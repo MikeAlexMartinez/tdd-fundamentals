@@ -4,7 +4,8 @@
   "description": "",
   "main": "game.js",
   "scripts": {
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "test:watch": "jest --watch --coverage"
   },
   "keywords": [],
   "author": "",
