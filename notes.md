@@ -113,4 +113,24 @@ rightColumn, leftColumn etc. 👍 That really drives home the whole point of tdd
 get something working and then make more elegant as you did. Only thing that 
 might be missing is explicit mention of the whole "red, green, refactor" phrase.
 
+General note which I forgot to add the other day:
+I don't think you've mentioned the 3a's of unit testing
+- arrange
+- act
+- assert
 
+Other possible thing to mention but potentially less important is the testing triangle,
+Where large proportion of tests should be unit tests, with integration tests being second, and the top being slow e2e tests.
+
+Section 3
+part 8:
+
+I think most of this is really good. In the video you have a type with the div tag not 
+being closed by a div tag, it says grid. But I see you've caught this as source code 
+is correct.
+
+I think at the end of the video, when transitioning the grid to have rows, alot of assertions and criteria are being tested in one test block. Personally I think these assertions should either be independently, potential for using another describe block with a beforeEach to set the tests up. Some say (although I'm yet to see someone do this in real life), that you should have one assertion per test.
+
+Perhaps the row stuff should be split into it's own test.
+
+I think draw grid should be broken up, with drawRow being it's own function. Feel like alot is being done in drawGrid.

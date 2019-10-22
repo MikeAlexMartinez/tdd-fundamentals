@@ -35,11 +35,31 @@ const countNeighbours = (cells, index) => {
   );
 };
 
-const regenerate = (cells) => cells.map(c => isAlive(c));
+const regenerate = (cells) => cells.map((c, i) => isAlive(c, countNeighbours(cells, i)));
+
+const createElement = className => {
+  const element = document.createElement('div');
+  element.className = className
+  return element;
+}
+
+const drawGrid = (cells) => {
+  const width = Math.sqrt(cells.length)
+  const grid = document.getElementById('grid')
+  const container = createElement('container')
+
+  cells.forEach((cell) => {
+    const cellElm = createElement(`cell ${cell === 0 ? 'dead' : 'live'}`)
+    container.appendChild(cellElm)
+  })
+
+  grid.appendChild(container)
+}
 
 window.game = {
   isAlive,
   generate,
   regenerate,
   countNeighbours,
+  drawGrid,
 };

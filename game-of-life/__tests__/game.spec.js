@@ -1,6 +1,6 @@
 require("../game");
 
-const { isAlive, generate, regenerate, countNeighbours } = window.game;
+const { isAlive, generate, regenerate, countNeighbours, drawGrid } = window.game;
 
 describe('game of life', () => {
   describe('isAlive algorithm', () => {
@@ -77,9 +77,31 @@ describe('game of life', () => {
       const expectedCells = [0] // a single dead cell in same size grid
       expect(regenerate(cells)).toEqual(expectedCells)
     })
-    xtest('should return all live cells', () => {
+    test('should return all live cells', () => {
       const cells = [1, 1, 1, 0]
       expect(regenerate(cells)).toEqual([1, 1, 1, 1])
+    })
+  })
+
+  describe('browser grid', () => {
+    test('should display 1 dead cell', () => {
+      document.body.innerHTML = '<div id="grid"></div>'
+      drawGrid([0])
+      expect(document.querySelectorAll('.container').length).toEqual(1)
+      expect(document.querySelectorAll('.cell.dead').length).toEqual(1)
+    })
+    test('should display 1 live cell', () => {
+      document.body.innerHTML = '<div id="grid"></div>'
+      drawGrid([1])
+      expect(document.querySelectorAll('.container').length).toEqual(1)
+      expect(document.querySelectorAll('.cell.live').length).toEqual(1)
+    })
+    test('should display 4 cells, 2 live, 2 dead', () => {
+      document.body.innerHTML = '<div id="grid"></div>'
+      drawGrid([0, 0, 1, 1])
+      expect(document.querySelectorAll('.cell').length).toEqual(4)
+      expect(document.querySelectorAll('.cell.live').length).toEqual(2)
+      expect(document.querySelectorAll('.cell.dead').length).toEqual(2)
     })
   })
 })
